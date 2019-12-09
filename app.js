@@ -18,6 +18,13 @@ var express           = require('express'),
     meetupsController = require('./server/controllers/meetups-controller');
 
 mongoose.connect('mongodb://localhost:27017/mean-demo');
+mongoose.connection.on('connected', () => {
+  console.log('connected to the mongo database')
+});
+
+mongoose.connection.on('error', err => {
+  console.log('Error at Mongo DB' + err);
+});
 
 app.use(bodyParser());
 
