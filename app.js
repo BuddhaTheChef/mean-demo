@@ -23,7 +23,8 @@ const MongoClient = require('mongodb').MongoClient;
     const uri ="mongodb+srv://awietecha:Password25@mean-demo-k3wfd.gcp.mongodb.net/test?retryWrites=true&w=majority";
 
     mongoose
-.connect(process.env.MONGO_URI, {
+    //process.env.MONGO_URI
+.connect(uri, {
 useUnifiedTopology: true,
 useNewUrlParser: true,
 })
