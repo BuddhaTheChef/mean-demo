@@ -20,15 +20,19 @@ var express           = require('express'),
 const MongoClient = require('mongodb').MongoClient;
 
     // replace the uri string with your connection string.
+    const uri ="mongodb+srv://awietecha:Password25@mean-demo-k3wfd.gcp.mongodb.net/test?retryWrites=true&w=majority";
 
-    const MongoClient = require('mongodb').MongoClient;
-    const uri = "mongodb+srv://awietecha:Password25@mean-demo-k3wfd.gcp.mongodb.net/test?retryWrites=true&w=majority";
-    const client = new MongoClient(uri, { useNewUrlParser: true });
-    client.connect(err => {
-      const collection = client.db("test").collection("devices");
-      // perform actions on the collection object
-      client.close();
-    });
+    mongoose
+.connect(process.env.MONGO_URI, {
+useUnifiedTopology: true,
+useNewUrlParser: true,
+})
+.then(() => console.log('DB Connected!'))
+.catch(err => {
+console.log(`DB Connection Error: ${err.message}`);
+});
+
+
 app.use(bodyParser());
 
 app.get('/', function (req, res) {
