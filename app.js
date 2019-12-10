@@ -20,27 +20,15 @@ var express           = require('express'),
 const MongoClient = require('mongodb').MongoClient;
 
     // replace the uri string with your connection string.
-    const uri ="mongodb+srv://awietecha:Password25@mean-demo-k3wfd.gcp.mongodb.net/test?retryWrites=true&w=majority";
 
-    mongoose
-.connect(process.env.MONGO_URI, {
-useUnifiedTopology: true,
-useNewUrlParser: true,
-})
-.then(() => console.log('DB Connected!'))
-.catch(err => {
-console.log(`DB Connection Error: ${err.message}`);
-});
-    // MongoClient.connect(uri, function(err, client) {
-    //    if(err) {
-    //         console.log('Error occurred while connecting to MongoDB Atlas...\n',err);
-    //    }
-    //    console.log('Connected...');
-    //    const collection = client.db("test").collection("devices");
-    //    // perform actions on the collection object
-    //    client.close();
-    // }); 
-
+    const MongoClient = require('mongodb').MongoClient;
+    const uri = "mongodb+srv://awietecha:Password25@mean-demo-k3wfd.gcp.mongodb.net/test?retryWrites=true&w=majority";
+    const client = new MongoClient(uri, { useNewUrlParser: true });
+    client.connect(err => {
+      const collection = client.db("test").collection("devices");
+      // perform actions on the collection object
+      client.close();
+    });
 app.use(bodyParser());
 
 app.get('/', function (req, res) {
